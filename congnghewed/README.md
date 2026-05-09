@@ -2,13 +2,31 @@
 
 Gifter Bakery là một website bán bánh ngọt gồm frontend HTML/CSS/JavaScript thuần và backend Node.js/Express dùng SQLite để lưu dữ liệu. Dự án có đăng nhập local, đăng nhập Google, giỏ hàng, đặt đơn, trang quản trị và tích hợp thông báo qua n8n/Socket.IO.
 
-## Tính Năng
+## Chức Năng Theo Vai Trò
 
-- Trang chủ, danh sách sản phẩm, chi tiết sản phẩm, giỏ hàng.
+### User
+
+- Xem trang chủ, danh sách sản phẩm và chi tiết sản phẩm.
 - Đăng ký, đăng nhập, đăng xuất bằng session cookie.
 - Đăng nhập Google bằng Google Identity Services.
-- Tạo và quản lý đơn hàng.
-- Khu admin cho sản phẩm, đơn hàng, khách hàng, thống kê và cài đặt.
+- Thêm sản phẩm vào giỏ hàng, cập nhật số lượng và xóa sản phẩm khỏi giỏ.
+- Tạo đơn hàng với thông tin người nhận, địa chỉ, phương thức thanh toán và ghi chú.
+- Xem danh sách đơn hàng của mình.
+- Hủy đơn khi đơn đang ở trạng thái xử lý.
+
+### Admin
+
+- Đăng nhập với quyền quản trị.
+- Truy cập giao diện admin riêng.
+- Thêm, sửa, xóa sản phẩm.
+- Bật hoặc tắt hiển thị sản phẩm trên frontend.
+- Xem toàn bộ đơn hàng.
+- Cập nhật trạng thái đơn hàng: `Processing`, `Shipped`, `Delivered`, `Cancelled`.
+- Xóa đơn hàng khi cần thiết.
+- Xem khu khách hàng, thống kê và cài đặt trong admin.
+
+## Tính Năng Chung
+
 - Đồng bộ thông báo đơn hàng qua Socket.IO và webhook n8n.
 - Tự seed dữ liệu sản phẩm ban đầu từ `frontend/js/product-data.js` nếu database còn trống.
 
@@ -141,6 +159,8 @@ Chạy test:
 ```bash
 npm test
 ```
+
+
 
 ## Ghi Chú
 
