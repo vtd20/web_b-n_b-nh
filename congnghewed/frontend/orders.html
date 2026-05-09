@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đơn hàng của tôi | Gifter Bakery</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/qvjz8QFW/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;700&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/orders.css" />
+</head>
+<body class="orders-page">
+  <header>
+    <div class="logo">
+      <img src="img/Logo_Nobackground.png" alt="Gifter Bakery Logo" />
+      <span>BAKERY</span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="about.html">Về Chúng Tôi</a></li>
+        <li><a href="products.html">Sản Phẩm</a></li>
+        <li><a class="active" href="orders.html">Theo Dõi Đơn</a></li>
+        <li><a href="index.html#contact">Liên Hệ</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-area" id="auth-area"></div>
+
+    <div class="cart-icon">
+      <i class="fa fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
+      <span id="cart-count">0</span>
+      <div id="cart-total">0đ</div>
+      <div id="mini-cart" class="mini-cart"></div>
+    </div>
+  </header>
+
+  <main class="orders-main">
+    <section class="orders-hero">
+      <div class="orders-layout">
+        <aside class="orders-sidebar">
+          <div class="orders-panel orders-account-card">
+            <p class="orders-panel-kicker">Tài khoản</p>
+            <h2 id="orders-user-name">Khách hàng</h2>
+            <p id="orders-user-email" class="orders-muted">Đăng nhập để xem đơn hàng và cập nhật trạng thái.</p>
+            <a class="orders-support-btn" href="auth.html?mode=login&next=orders.html">Đăng nhập</a>
+          </div>
+
+          <div class="orders-panel orders-menu-card">
+            <a class="orders-menu-link active" href="orders.html"><i class="fa-regular fa-clipboard"></i>Đơn hàng của tôi</a>
+            <a class="orders-menu-link" href="index.html#about"><i class="fa-regular fa-user"></i>Thông tin cá nhân</a>
+            <a class="orders-menu-link" href="products.html"><i class="fa-regular fa-heart"></i>Sản phẩm yêu thích</a>
+            <a class="orders-menu-link" href="index.html#contact"><i class="fa-regular fa-map"></i>Địa chỉ nhận hàng</a>
+          </div>
+
+          <div class="orders-panel orders-summary-card">
+            <p class="orders-panel-kicker light">Tổng quan đơn hàng</p>
+            <div class="orders-summary-row"><span>Đang xử lý</span><strong id="summary-processing">0</strong></div>
+            <div class="orders-summary-row"><span>Đã giao</span><strong id="summary-delivered">0</strong></div>
+            <div class="orders-summary-row"><span>Đã hủy</span><strong id="summary-cancelled">0</strong></div>
+            <button type="button" class="orders-support-btn light" onclick="window.location.href='index.html#contact'">Hỗ trợ khách hàng</button>
+          </div>
+        </aside>
+
+        <section class="orders-content">
+          <div class="orders-panel orders-toolbar-card">
+            <div class="orders-toolbar-head">
+              <div>
+                <h1>Đơn hàng của tôi</h1>
+                <p>Theo dõi trạng thái, xem chi tiết và mua lại đơn cũ trong một màn hình.</p>
+              </div>
+              <label class="orders-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="orders-search" type="search" placeholder="Tìm kiếm đơn hàng..." />
+              </label>
+            </div>
+
+            <div class="orders-toolbar-filters">
+              <div class="orders-chips" id="status-chips">
+                <button type="button" class="orders-chip active" data-status="all">Tất cả</button>
+                <button type="button" class="orders-chip" data-status="Processing">Đang xử lý</button>
+                <button type="button" class="orders-chip" data-status="Shipped">Đang vận chuyển</button>
+                <button type="button" class="orders-chip" data-status="Delivered">Đã giao</button>
+                <button type="button" class="orders-chip" data-status="Cancelled">Đã hủy</button>
+              </div>
+
+              <div class="orders-sort">
+                <span>Sắp xếp:</span>
+                <select id="orders-sort">
+                  <option value="newest">Mới nhất</option>
+                  <option value="oldest">Cũ nhất</option>
+                  <option value="highest">Tổng cao nhất</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="orders-empty" class="orders-empty" hidden></div>
+          <div id="orders-list" class="orders-list"></div>
+          <div id="orders-pagination" class="orders-pagination"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="orders-footer">
+    <div class="orders-footer-inner">
+      <div>
+        <h3>Gifter Bakery</h3>
+        <p>Ngọt ngào trong từng đơn hàng, chăm chút trong từng chi tiết.</p>
+      </div>
+      <div class="orders-footer-links">
+        <a href="products.html">Sản phẩm</a>
+        <a href="orders.html">Theo dõi đơn</a>
+        <a href="index.html#contact">Liên hệ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>

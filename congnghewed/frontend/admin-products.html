@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Quản lý sản phẩm | Gifter Bakery</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/qvjz8QFW/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body class="admin-page" data-admin-page="products">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <div class="admin-brand-badge">CC</div>
+        <div>
+          <h2>Quản trị</h2>
+          <p>Quản lý hiệu quả</p>
+        </div>
+      </div>
+      <nav class="admin-nav">
+        <a href="admin.html" data-nav="dashboard">Tổng quan</a>
+        <a href="admin-products.html" data-nav="products">Sản phẩm</a>
+        <a href="admin-orders.html" data-nav="orders">Đơn hàng</a>
+        <a href="admin-customers.html" data-nav="customers">Khách hàng</a>
+        <a href="admin-analytics.html" data-nav="analytics">Thống kê</a>
+        <a href="admin-settings.html" data-nav="settings">Cài đặt</a>
+      </nav>
+      <div class="admin-sidebar-footer">
+        <button type="button" onclick="logoutAdmin()">+ Báo cáo mới</button>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <h1>Gifter Bakery</h1>
+        <div class="admin-topbar-actions">
+          <button type="button" aria-label="Thông báo"><i class="fa-regular fa-bell"></i></button>
+          <button type="button" aria-label="Cài đặt"><i class="fa-solid fa-gear"></i></button>
+          <div class="admin-user-chip">
+            <div class="admin-user-avatar" id="admin-user-avatar">Q</div>
+            <strong id="admin-user-name">Quản trị</strong>
+            <button type="button" onclick="logoutAdmin()">Đăng xuất</button>
+          </div>
+        </div>
+      </header>
+      <main class="admin-content">
+        <div id="admin-content"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/product-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

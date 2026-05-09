@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>GIFTER BAKERY | Chi Tiết Sản Phẩm</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/qvjz8QFW/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/product-detail.css" />
+</head>
+
+<body class="product-detail-page">
+  <header>
+    <div class="logo">
+      <img src="img/Logo_Nobackground.png" alt="Gifter Bakery Logo" />
+      <span>BAKERY</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="about.html">Về Chúng Tôi</a></li>
+        <li><a href="products.html">Sản Phẩm</a></li>
+        <li><a href="orders.html">Theo Dõi Đơn</a></li>
+        <li><a href="index.html#contact">Liên Hệ</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-area" id="auth-area"></div>
+
+    <div class="cart-icon">
+      <i class="fa fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
+      <span id="cart-count">0</span>
+      <div id="cart-total">0đ</div>
+      <div id="mini-cart" class="mini-cart"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="detail-top">
+      <div class="container detail-container">
+        <a class="detail-back" href="products.html">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Quay lại trang sản phẩm</span>
+        </a>
+
+        <div class="about-container detail-layout">
+          <div class="about-video detail-media">
+            <div class="detail-main-image">
+              <img id="detail-main-img" src="" alt="Sản phẩm" />
+            </div>
+            <div id="detail-thumbs" class="detail-thumbs"></div>
+          </div>
+
+          <div class="about-text detail-info">
+            <h1 id="detail-name">Sản phẩm</h1>
+            <p id="detail-desc" class="detail-desc"></p>
+            <div id="detail-price" class="detail-price">0đ</div>
+
+            <div class="detail-group">
+              <h3>Chọn kích cỡ</h3>
+              <div class="size-grid">
+                <button class="size-option active" data-size="S" data-add="0">Nhỏ</button>
+                <button class="size-option" data-size="M" data-add="20000">Vừa</button>
+                <button class="size-option" data-size="L" data-add="40000">Lớn</button>
+              </div>
+            </div>
+
+            <div class="detail-group">
+              <h3>Thêm topping</h3>
+              <div class="topping-grid">
+                <label class="topping-option">
+                  <input type="checkbox" value="Mâm xôi" data-add="10000" />
+                  <span>
+                    <strong>Mâm xôi</strong>
+                    <small>+10.000đ</small>
+                  </span>
+                </label>
+                <label class="topping-option">
+                  <input type="checkbox" value="Vụn vàng" data-add="15000" />
+                  <span>
+                    <strong>Vụn vàng</strong>
+                    <small>+15.000đ</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="detail-actions">
+              <div class="qty-stepper">
+                <button type="button" id="qty-minus">-</button>
+                <input id="qty-input" type="number" min="1" value="1" />
+                <button type="button" id="qty-plus">+</button>
+              </div>
+              <button type="button" id="add-to-cart-btn" class="detail-add-btn">Thêm vào giỏ hàng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-extra">
+      <div class="container detail-container">
+        <div class="extra-tabs">
+          <button type="button" class="extra-tab active" data-extra-tab="description">Mô tả</button>
+          <button type="button" class="extra-tab" data-extra-tab="additional">Thông tin bổ sung</button>
+        </div>
+
+        <div class="extra-panel active" id="extra-description">
+          <p id="extra-desc-main"></p>
+          <p>
+            Bánh được làm mới theo đơn, ưu tiên nguyên liệu tươi và trình bày gọn đẹp để phù hợp với sinh nhật, kỷ niệm và các dịp
+            tặng quà.
+          </p>
+          <p>
+            Nếu bạn muốn chỉnh độ ngọt, trang trí hoặc ghi lời nhắn riêng, có thể nhập ở phần ghi chú trước khi thêm vào giỏ.
+          </p>
+        </div>
+
+        <div class="extra-panel" id="extra-additional">
+          <div class="extra-info-grid">
+            <div class="extra-info-card">
+              <h3>Danh mục</h3>
+              <p id="extra-category"></p>
+            </div>
+            <div class="extra-info-card">
+              <h3>Phù hợp</h3>
+              <p>Sinh nhật, tiệc nhỏ, quà tặng</p>
+            </div>
+            <div class="extra-info-card">
+              <h3>Giao hàng</h3>
+              <p>Làm mới trong ngày, giao theo khung giờ</p>
+            </div>
+            <div class="extra-info-card">
+              <h3>Bảo quản</h3>
+              <p>Giữ lạnh và dùng ngon nhất trong 24 giờ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-related">
+      <div class="container detail-container">
+        <div class="section-title section-title-left">
+          <h2>Có thể bạn thích</h2>
+        </div>
+        <div id="related-grid" class="related-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand-block">
+          <h3>Gifter Bakery</h3>
+          <p class="tagline">Lưu giữ ngọt ngào mỗi ngày</p>
+          <p>
+            Tạo nên những chiếc bánh thủ công từ năm 2014. Chúng tôi tin rằng mỗi miếng bánh
+            đều nên kể một câu chuyện về sự tận tâm và tỉ mỉ.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="#" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>LIÊN KẾT NHANH</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Câu chuyện của chúng tôi</a></li>
+            <li><a href="products.html">Thực đơn</a></li>
+            <li><a href="index.html#contact">Liên hệ</a></li>
+            <li><a href="products.html">Sản phẩm theo mùa</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>GIỜ MỞ CỬA</h4>
+          <div class="hours-row"><span>Thứ 2 - Thứ 6</span><strong>8:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Thứ 7 - Chủ nhật</span><strong>9:00 - 21:00</strong></div>
+          <p class="hours-note">Đóng cửa vào ngày lễ.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>LIÊN HỆ</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot"></i>123 Baker St, Quận Ngọt Ngào, Thành Phố Bánh</li>
+            <li><i class="fa-solid fa-phone"></i>+1 (555) 012-3456</li>
+            <li><i class="fa-solid fa-envelope"></i>hello@thepatisserie.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Gifter Bakery. Làm bánh bằng cả trái tim.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản dịch vụ</a>
+          <a href="#">Khả năng truy cập</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast">
+    <i class="fa fa-check-circle"></i>
+    <div>
+      <strong>Đã thêm vào giỏ</strong>
+      <p id="toast-msg">Sản phẩm</p>
+    </div>
+  </div>
+
+  <div class="contact-floating" aria-label="Liên hệ nhanh">
+    <a class="contact-call" href="tel:0911638166">
+      <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+      <span class="contact-label">
+        <small>Gọi ngay</small>
+        0911638166
+      </span>
+    </a>
+    <a class="contact-zalo" href="https://zalo.me/0911638166" target="_blank" rel="noopener noreferrer">
+      <span class="contact-icon">Zalo</span>
+      <span class="contact-label">
+        <small>Chat Zalo</small>
+      </span>
+    </a>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/product-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/product-detail.js"></script>
+</body>
+
+</html>

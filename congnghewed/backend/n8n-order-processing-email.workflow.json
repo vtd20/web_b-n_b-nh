@@ -1,0 +1,122 @@
+{
+  "name": "GIFTER BAKERY - Order Processing Email",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "bakery-order-processing",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        360,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "email",
+              "value": "={{$json.email}}",
+              "type": "string"
+            },
+            {
+              "name": "subject",
+              "value": "={{$json.subject}}",
+              "type": "string"
+            },
+            {
+              "name": "text",
+              "value": "={{$json.text}}",
+              "type": "string"
+            },
+            {
+              "name": "html",
+              "value": "={{$json.html}}",
+              "type": "string"
+            },
+            {
+              "name": "orderId",
+              "value": "={{$json.orderId}}",
+              "type": "string"
+            },
+            {
+              "name": "customer",
+              "value": "={{$json.customer}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "prepare-email",
+      "name": "Prepare Email",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        600,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "toList": "={{$json.email}}",
+        "subject": "={{$json.subject}}",
+        "message": "={{$json.html}}",
+        "options": {
+          "prependQuotedText": false
+        }
+      },
+      "id": "send-gmail",
+      "name": "Send Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        860,
+        260
+      ],
+      "credentials": {
+        "gmailOAuth2Api": {
+          "name": "REPLACE_WITH_GMAIL_CREDENTIAL"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Email": {
+      "main": [
+        [
+          {
+            "node": "Send Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1"
+}

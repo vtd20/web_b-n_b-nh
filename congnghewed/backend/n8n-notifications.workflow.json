@@ -1,0 +1,127 @@
+{
+  "name": "GIFTER BAKERY - Notifications (Telegram + Gmail)",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "bakery-notifications",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        340,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "value1": "={{$json.event}}",
+        "rules": [
+          {
+            "operation": "equal",
+            "value2": "order.created"
+          },
+          {
+            "operation": "equal",
+            "value2": "order.status.changed"
+          }
+        ]
+      },
+      "id": "switch-event",
+      "name": "Switch Event",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{$json.telegramMessage}}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "send-telegram",
+      "name": "Send Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        820,
+        180
+      ],
+      "credentials": {
+        "telegramApi": {
+          "name": "REPLACE_WITH_TELEGRAM_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "toList": "={{$json.email}}",
+        "subject": "={{$json.subject}}",
+        "message": "={{$json.text}}",
+        "options": {
+          "prependQuotedText": false
+        }
+      },
+      "id": "send-gmail",
+      "name": "Send Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        820,
+        420
+      ],
+      "credentials": {
+        "gmailOAuth2Api": {
+          "name": "REPLACE_WITH_GMAIL_CREDENTIAL"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Event": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1"
+}

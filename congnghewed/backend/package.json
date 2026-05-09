@@ -1,0 +1,17 @@
+{
+  "name": "gifter-bakery",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/basic.test.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "google-auth-library": "^9.14.1",
+    "socket.io": "^4.8.1"
+  }
+}

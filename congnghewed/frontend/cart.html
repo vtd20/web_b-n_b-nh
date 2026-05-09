@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giỏ hàng | Gifter Bakery</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/qvjz8QFW/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/cart.css" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="img/Logo_Nobackground.png" alt="Gifter Bakery Logo" />
+      <span>BAKERY</span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="about.html">Về Chúng Tôi</a></li>
+        <li><a href="products.html">Sản Phẩm</a></li>
+        <li><a href="orders.html">Theo Dõi Đơn</a></li>
+        <li><a href="index.html#contact">Liên Hệ</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-area" id="auth-area"></div>
+
+    <div class="cart-icon">
+      <i class="fa fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
+      <span id="cart-count">0</span>
+      <div id="cart-total">0đ</div>
+      <div id="mini-cart" class="mini-cart"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="cart-page">
+      <div class="cart-left">
+        <div class="cart-header">
+          <button type="button" class="back-btn" onclick="goBack()" aria-label="Quay lại trang trước">←</button>
+          <h2>🛒 Giỏ hàng</h2>
+        </div>
+
+        <div class="select-all">
+          <label>
+            <input type="checkbox" id="selectAll" onchange="toggleAll(this)" />
+            Chọn tất cả
+          </label>
+        </div>
+
+        <div id="cart-list"></div>
+      </div>
+
+      <div class="cart-right">
+        <div class="order-box">
+          <h3>Thông tin đơn hàng</h3>
+
+          <div class="summary">
+            <p>Tạm tính: <span id="subtotal">0đ</span></p>
+            <p>Giảm giá: <span>0đ</span></p>
+            <hr />
+            <h2 id="total">0đ</h2>
+          </div>
+
+          <div class="checkout-form">
+            <h4>Thông tin khách hàng</h4>
+            <div class="form-group">
+              <input type="text" id="name" placeholder="Họ và tên" />
+              <small class="error" id="name-error"></small>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="phone" placeholder="Số điện thoại" />
+              <small class="error" id="phone-error"></small>
+            </div>
+
+            <div class="form-group address-group">
+              <label class="address-label">Địa chỉ nhận hàng</label>
+              <div class="address-picker">
+                <select id="province" class="address-select">
+                  <option value="">Tỉnh / Thành phố</option>
+                </select>
+                <select id="district" class="address-select" disabled>
+                  <option value="">Quận / Huyện</option>
+                </select>
+                <select id="ward" class="address-select" disabled>
+                  <option value="">Phường / Xã</option>
+                </select>
+                <input type="text" id="address-detail" class="address-detail"
+                  placeholder="Số nhà, tên đường, tòa nhà..." />
+              </div>
+              <small class="error" id="address-error"></small>
+            </div>
+
+            <div class="payment-section">
+              <div class="payment-section__head">
+                <div>
+                  <h4>Phương thức thanh toán</h4>
+                  <p>Chọn thanh toán chuyển khoản để mở Bank / MoMo sau khi bấm Thanh toán, hoặc chọn COD.</p>
+                </div>
+              </div>
+
+              <div class="payment-choice-grid">
+                <label class="payment-choice-card" data-payment-choice-card="transfer">
+                  <input type="radio" name="payment-choice" value="transfer" checked />
+                  <span class="payment-choice-card__radio" aria-hidden="true"></span>
+                  <span class="payment-choice-card__icon">🏦</span>
+                  <span class="payment-choice-card__title">Thanh toán - chuyển khoản</span>
+                  <span class="payment-choice-card__desc">Bấm Thanh toán để chọn MB Bank hoặc MoMo ở bước sau.</span>
+                </label>
+
+                <label class="payment-choice-card" data-payment-choice-card="cod">
+                  <input type="radio" name="payment-choice" value="cod" />
+                  <span class="payment-choice-card__radio" aria-hidden="true"></span>
+                  <span class="payment-choice-card__icon momo">C</span>
+                  <span class="payment-choice-card__title">Thanh toán khi nhận hàng</span>
+                  <span class="payment-choice-card__desc">Trả tiền mặt hoặc chuyển khoản khi nhận bánh.</span>
+                </label>
+              </div>
+
+              <div class="payment-choice-note">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                <span>Chọn chuyển khoản để mở giao diện Bank / MoMo sau khi bấm Thanh toán.</span>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="checkoutOrder()" class="btn checkout-btn">Thanh toán</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="order-success" class="order-toast" hidden>
+    <div class="order-toast-card">
+      <div class="order-toast-head">
+        <div class="order-toast-icon" aria-hidden="true">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="order-toast-title">
+          <h2>Đặt hàng thành công</h2>
+          <p id="order-toast-subtitle">Cảm ơn bạn đã mua hàng tại Gifter Bakery</p>
+        </div>
+        <button type="button" class="order-toast-close" onclick="closeSuccess()" aria-label="Đóng">×</button>
+      </div>
+
+      <div class="order-toast-details">
+        <div class="order-toast-row">
+          <span>Mã đơn</span>
+          <strong id="order-toast-id">#ORD-123456</strong>
+        </div>
+        <div class="order-toast-row">
+          <span>Tổng tiền</span>
+          <strong id="order-toast-total">0đ</strong>
+        </div>
+        <div class="order-toast-row">
+          <span>Phương thức thanh toán</span>
+          <strong id="order-toast-payment">COD</strong>
+        </div>
+        <div class="order-toast-row">
+          <span>Thời gian dự kiến</span>
+          <strong id="order-toast-eta">30 - 45 phút</strong>
+        </div>
+      </div>
+
+      <div class="order-toast-progress" aria-hidden="true">
+        <span></span>
+      </div>
+
+      <div class="order-toast-actions">
+        <a class="btn order-toast-btn secondary" href="orders.html">Xem đơn hàng</a>
+        <a class="btn order-toast-btn primary" href="products.html">Tiếp tục mua</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-modal" class="payment-modal" hidden aria-hidden="true">
+    <div class="payment-modal__backdrop" data-close-payment-modal></div>
+    <div class="payment-modal__panel" role="dialog" aria-modal="true" aria-labelledby="payment-modal-title">
+      <div class="payment-modal__header">
+        <div>
+          <h3 id="payment-modal-title">Chọn Bank hoặc MoMo</h3>
+        </div>
+        <button type="button" class="payment-modal__close" data-close-payment-modal aria-label="Đóng">Đóng</button>
+      </div>
+
+      <div class="payment-section payment-section--modal">
+        <div class="payment-section__head">
+          <div>
+            <h4>Phương thức thanh toán</h4>
+          </div>
+          <div class="payment-status-pill" id="payment-status-pill">Chờ thanh toán</div>
+        </div>
+
+        <div class="payment-method-grid" id="payment-method-grid">
+          <label class="payment-card" data-payment-card="bank">
+            <input type="radio" name="transfer-method" value="bank" checked />
+            <span class="payment-card__radio" aria-hidden="true"></span>
+            <span class="payment-card__icon">🏦</span>
+            <span class="payment-card__title">Chuyển khoản ngân hàng</span>
+            <span class="payment-card__desc">MB Bank • Xác nhận nhanh</span>
+          </label>
+
+          <label class="payment-card" data-payment-card="momo">
+            <input type="radio" name="transfer-method" value="momo" />
+            <span class="payment-card__radio" aria-hidden="true"></span>
+            <span class="payment-card__icon momo">M</span>
+            <span class="payment-card__title">Ví điện tử MoMo</span>
+            <span class="payment-card__desc">Thanh toán bằng QR MoMo</span>
+          </label>
+        </div>
+
+        <div class="payment-detail-shell">
+          <div class="payment-visual">
+            <div class="payment-qr-card" id="payment-qr-card">
+              <div class="payment-qr-card__top">
+                <span class="payment-qr-card__badge">QR MB</span>
+                <span class="payment-qr-card__spark"></span>
+              </div>
+              <div class="payment-qr-card__identity" aria-hidden="true">
+                <strong id="payment-qr-account-name">VU THANH DAT</strong>
+                <span id="payment-qr-account-mask">STK: *******4504</span>
+              </div>
+              <div class="payment-qr-card__brands" aria-hidden="true">
+                <span>MoMo</span>
+                <span>VietQR</span>
+                <span>Napas 247</span>
+              </div>
+              <div class="payment-qr" aria-hidden="true">
+                <img id="payment-qr-image" alt="Mã QR thanh toán" />
+              </div>
+              <strong id="payment-qr-label">Quét để thanh toán</strong>
+              <p id="payment-qr-note">Mở app ngân hàng hoặc MoMo để quét mã.</p>
+            </div>
+
+            <div class="payment-copy-hint">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Thông tin có thể sao chép nhanh trong 1 chạm</span>
+            </div>
+          </div>
+
+          <div class="payment-details">
+            <div class="payment-field">
+              <span>Ngân hàng</span>
+              <strong id="payment-bank-name">MB Bank</strong>
+            </div>
+            <div class="payment-field">
+              <span>Số tài khoản</span>
+              <div class="copy-row">
+                <strong id="payment-account-number">0345734504</strong>
+                <button type="button" class="copy-btn" data-copy-target="payment-account-number">Sao chép</button>
+              </div>
+            </div>
+            <div class="payment-field">
+              <span>Tên chủ tài khoản</span>
+              <strong id="payment-account-name">VU THANH DAT</strong>
+            </div>
+            <div class="payment-field">
+              <span>Nội dung chuyển khoản</span>
+              <div class="copy-row">
+                <strong id="payment-content">ORD-123456</strong>
+                <button type="button" class="copy-btn" data-copy-target="payment-content">Sao chép</button>
+              </div>
+            </div>
+            <div class="payment-field">
+              <span>Trạng thái</span>
+              <strong id="payment-method-status">Chờ thanh toán</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-modal__actions">
+          <button type="button" class="btn checkout-btn" data-confirm-transfer-payment>Xác nhận thanh toán</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+
+</html>

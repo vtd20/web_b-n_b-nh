@@ -1,0 +1,253 @@
+﻿<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/qvjz8QFW/Logo.png" />
+  <title>GIFTER BAKERY</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="img/Logo_Nobackground.png" alt="Gifter Bakery Logo" />
+      <span>BAKERY</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Trang Chủ</a></li>
+        <li><a href="about.html">Về Chúng Tôi</a></li>
+        <li><a href="products.html">Sản Phẩm</a></li>
+        <li><a href="orders.html">Theo Dõi Đơn</a></li>
+        <li><a href="#contact">Liên Hệ</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-area" id="auth-area"></div>
+
+    <div class="cart-icon">
+      <i class="fa fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
+      <span id="cart-count">0</span>
+
+      <div id="cart-total">0đ</div>
+
+      <div id="mini-cart" class="mini-cart"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="background hero" id="home">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <p class="hero-kicker">Đắm mình trong sự hoàn hảo của nghệ thuật thủ công</p>
+          <h1>Ngọt Ngào Trong Từng Miếng Bánh</h1>
+          <p class="hero-description">
+            Khám phá thế giới bánh ngọt mềm mại, hiện đại và tràn đầy cảm hứng
+            tại BAKERY.
+          </p>
+          <div class="hero-actions">
+            <a href="products.html" class="btn hero-btn-primary">Mua Ngay</a>
+            <a href="products.html" class="btn hero-btn-secondary">Xem Menu</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img src="img/banh_kem/banhkem (1).jpg" alt="Bánh kem dâu tươi" />
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-container">
+        <div class="about-video">
+          <video autoplay muted loop playsinline style="width: 100%; display: block">
+            <source src="img/video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="about-text">
+          <h2>Câu Chuyện Của BAKERY</h2>
+          <p>
+            Tại BAKERY, chúng tôi tin rằng mỗi chiếc bánh không chỉ là
+            đồ ngọt, mà là một tác phẩm nghệ thuật mang lại niềm vui. Với
+            phong cách hiện đại, tối giản và những nguyên liệu tươi ngon nhất,
+            chúng tôi tạo ra những trải nghiệm ẩm thực tinh tế và "mềm mại"
+            cho khách hàng.
+          </p>
+          <p style="margin-top: 20px">
+            Chúng tôi chăm chút tỉ mỉ từ khâu chọn bột đến trang trí cuối cùng
+            để mỗi đơn hàng đều là một món quà đặc biệt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="container">
+        <div class="section-title">
+          <h2>Sản Phẩm Nổi Bật</h2>
+          <div class="line"></div>
+          <p>Những món bánh được yêu thích nhất. Xem toàn bộ danh mục ở trang sản phẩm.</p>
+          <p class="home-product-count" id="home-product-count">Đang tải số lượng sản phẩm...</p>
+        </div>
+        <div id="featured-products" class="products-grid featured-products-grid"></div>
+        <div class="featured-cta">
+          <a href="products.html" class="btn">Xem Tất Cả Sản Phẩm</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="products products-latest" id="new-products">
+      <div class="container">
+        <div class="section-title">
+          <h2>Sản Phẩm Mới Thêm</h2>
+          <div class="line"></div>
+          <p>Những sản phẩm vừa được cập nhật gần đây sẽ xuất hiện ở đây.</p>
+        </div>
+        <div id="latest-products" class="products-grid featured-products-grid"></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-container">
+          <div class="contact-info">
+            <h2>Liên Hệ Với Chúng Tôi</h2>
+            <p>
+              Để lại lời nhắn hoặc đặt bánh theo yêu cầu qua thông tin bên
+              dưới nhé!
+            </p>
+            <div style="margin-top: 30px">
+              <div class="info-item">
+                <span class="info-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+                <p>Cầu Giấy, Hà Nội</p>
+              </div>
+              <div class="info-item">
+                <span class="info-icon"><i class="fa-solid fa-phone-volume"></i></span>
+                <p>0345734504</p>
+              </div>
+              <div class="info-item">
+                <span class="info-icon"><i class="fa-solid fa-envelope"></i></span>
+                <p>hello@gmail.com</p>
+              </div>
+              <div class="info-item">
+                <span class="info-icon"><i class="fa-solid fa-clock"></i></span>
+                <p>Mở cửa: 08:00 - 21:00 mỗi ngày</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form action="#">
+              <div class="form-group">
+                <input type="text" placeholder="Họ và tên" required />
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Email của bạn" required />
+              </div>
+              <div class="form-group">
+                <textarea rows="5" placeholder="Bạn muốn nhắn gì cho chúng tôi?" required></textarea>
+              </div>
+              <button type="submit" class="btn" style="border: none; cursor: pointer; width: 100%">
+                Gửi Tin Nhắn
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand-block">
+          <h3>Gifter Bakery</h3>
+          <p class="tagline">Lưu giữ ngọt ngào mỗi ngày</p>
+          <p>
+            Chúng tôi tạo nên những trải nghiệm ẩm thực thủ công từ năm 2010. Chúng tôi tin rằng mỗi miếng bánh đều nên
+            kể một câu chuyện về niềm đam mê và sự tỉ mỉ.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="#" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>LIÊN KẾT NHANH</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Câu chuyện của chúng tôi</a></li>
+            <li><a href="products.html">Thực đơn</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+            <li><a href="products.html">Sản phẩm theo mùa</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>GIỜ MỞ CỬA</h4>
+          <div class="hours-row"><span>Thứ 2 - Thứ 6</span><strong>8:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Thứ 7 - Chủ nhật</span><strong>9:00 - 21:00</strong></div>
+          <p class="hours-note">Đóng cửa vào ngày lễ.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>LIÊN HỆ</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot"></i>Cầu Giấy, Hà Nội</li>
+            <li><i class="fa-solid fa-phone"></i>0345734504</li>
+            <li><i class="fa-solid fa-envelope"></i>helllo@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Gifter Bakery. Làm bánh bằng cả trái tim.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản dịch vụ</a>
+          <a href="#">Khả năng truy cập</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/product-data.js"></script>
+  <script src="js/products.js"></script>
+
+  <div id="toast" class="toast">
+    <i class="fa fa-check-circle"></i>
+    <div>
+      <strong>Đã thêm vào giỏ</strong>
+      <p id="toast-msg">Sản phẩm</p>
+    </div>
+  </div>
+
+  <div class="contact-floating" aria-label="Liên hệ nhanh">
+    <a class="contact-call" href="tel:0911638166">
+      <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+      <span class="contact-label">
+        <small>Gọi ngay</small>
+        0345734504
+      </span>
+    </a>
+    <a class="contact-zalo" href="https://zalo.me/0978560723" target="_blank" rel="noopener noreferrer">
+      <span class="contact-icon">Zalo</span>
+      <span class="contact-label">
+        <small>Chat Zalo</small>
+      </span>
+    </a>
+  </div>
+</body>
+
+</html>

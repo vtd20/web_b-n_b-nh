@@ -1,0 +1,119 @@
+{
+  "name": "GIFTER BAKERY - Order Notification to Telegram",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "bakery-order-created",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        380,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "telegramMessage",
+              "value": "={{$json.telegramMessage}}",
+              "type": "string"
+            },
+            {
+              "name": "orderId",
+              "value": "={{$json.orderId}}",
+              "type": "string"
+            },
+            {
+              "name": "customer",
+              "value": "={{$json.customer}}",
+              "type": "string"
+            },
+            {
+              "name": "phone",
+              "value": "={{$json.phone}}",
+              "type": "string"
+            },
+            {
+              "name": "total",
+              "value": "={{$json.total}}",
+              "type": "number"
+            },
+            {
+              "name": "itemsSummary",
+              "value": "={{$json.itemsSummary}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "prepare-message",
+      "name": "Prepare Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        620,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{$json.telegramMessage}}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "send-telegram",
+      "name": "Send Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        860,
+        280
+      ],
+      "credentials": {
+        "telegramApi": {
+          "name": "REPLACE_WITH_TELEGRAM_CREDENTIAL"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Message": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1"
+}

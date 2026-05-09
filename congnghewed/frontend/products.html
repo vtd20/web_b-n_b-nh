@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GIFTER BAKERY | Sản Phẩm</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/qvjz8QFW/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/products.css" />
+</head>
+
+<body class="products-page">
+  <header>
+    <div class="logo">
+      <img src="img/Logo_Nobackground.png" alt="Gifter Bakery Logo" />
+      <span>BAKERY</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="about.html">Về Chúng Tôi</a></li>
+        <li><a href="products.html">Sản Phẩm</a></li>
+        <li><a href="orders.html">Theo Dõi Đơn</a></li>
+        <li><a href="index.html#contact">Liên Hệ</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-area" id="auth-area"></div>
+
+    <div class="cart-icon">
+      <i class="fa fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
+      <span id="cart-count">0</span>
+      <div id="cart-total">0đ</div>
+      <div id="mini-cart" class="mini-cart"></div>
+    </div>
+  </header>
+
+  <main class="catalog-main">
+    <section class="catalog-hero">
+      <div class="container catalog-hero-inner">
+        <p class="catalog-kicker">Bộ sưu tập đầy đủ</p>
+        <h1>Chọn chiếc bánh hợp với bạn</h1>
+        <p>
+          Tất cả sản phẩm được gom về một trang để bạn tìm nhanh hơn, lọc dễ hơn và đặt hàng gọn hơn.
+        </p>
+      </div>
+    </section>
+
+    <section class="catalog-section">
+      <div class="container catalog-layout">
+        <aside class="catalog-sidebar">
+          <div class="filter-card">
+            <h3>Danh mục</h3>
+            <label class="filter-option">
+              <input type="checkbox" id="category-all" checked />
+              <span>Tất cả bánh</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="category-filter" value="cake" />
+              <span>Bánh kem</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="category-filter" value="tiramisu" />
+              <span>Tiramisu</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="category-filter" value="cupcake" />
+              <span>Cupcake</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="category-filter" value="sponge" />
+              <span>Bánh bông lan</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="category-filter" value="bread" />
+              <span>Bánh mì ngọt</span>
+            </label>
+          </div>
+        </aside>
+
+        <div class="catalog-content">
+          <div class="catalog-toolbar">
+            <label class="search-shell" for="product-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input id="product-search" type="search" placeholder="Tìm chiếc bánh bạn thích..." />
+            </label>
+
+            <label class="sort-shell" for="sort-select">
+              <span>Sắp xếp:</span>
+              <select id="sort-select">
+                <option value="featured">Nổi bật</option>
+                <option value="price-asc">Giá: Từ thấp đến cao</option>
+                <option value="price-desc">Giá: Từ cao đến thấp</option>
+                <option value="name">Tên</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="catalog-meta">
+            <p id="results-count">0 sản phẩm</p>
+          </div>
+
+          <div id="products-grid" class="products-grid"></div>
+          <div id="pagination" class="pagination"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand-block">
+          <h3>Gifter Bakery</h3>
+          <p class="tagline">Lưu giữ ngọt ngào mỗi ngày</p>
+          <p>
+            Tạo nên những chiếc bánh thủ công từ năm 2014. Chúng tôi tin rằng mỗi miếng bánh đều nên kể một câu chuyện
+            về sự tận tâm và tỉ mỉ.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="#" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>LIÊN KẾT NHANH</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Câu chuyện của chúng tôi</a></li>
+            <li><a href="products.html">Thực đơn</a></li>
+            <li><a href="index.html#contact">Liên hệ</a></li>
+            <li><a href="products.html">Sản phẩm theo mùa</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>GIỜ MỞ CỬA</h4>
+          <div class="hours-row"><span>Thứ 2 - Thứ 6</span><strong>8:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Thứ 7 - Chủ nhật</span><strong>9:00 - 21:00</strong></div>
+          <p class="hours-note">Đóng cửa vào ngày lễ.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>LIÊN HỆ</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot"></i>123 Baker St, Quận Ngọt Ngào, Thành Phố Bánh</li>
+            <li><i class="fa-solid fa-phone"></i>+1 (555) 012-3456</li>
+            <li><i class="fa-solid fa-envelope"></i>hello@thepatisserie.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Gifter Bakery. Làm bánh bằng cả trái tim.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản dịch vụ</a>
+          <a href="#">Khả năng truy cập</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast">
+    <i class="fa fa-check-circle"></i>
+    <div>
+      <strong>Đã thêm vào giỏ</strong>
+      <p id="toast-msg">Sản phẩm</p>
+    </div>
+  </div>
+
+  <div class="contact-floating" aria-label="Liên hệ nhanh">
+    <a class="contact-call" href="tel:0911638166">
+      <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+      <span class="contact-label">
+        <small>Gọi ngay</small>
+        0911638166
+      </span>
+    </a>
+    <a class="contact-zalo" href="https://zalo.me/0911638166" target="_blank" rel="noopener noreferrer">
+      <span class="contact-icon">Zalo</span>
+      <span class="contact-label">
+        <small>Chat Zalo</small>
+      </span>
+    </a>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/product-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

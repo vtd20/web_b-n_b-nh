@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>GIFTER BAKERY | Đăng nhập</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/qvjz8QFW/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+
+<body class="auth-page">
+  <div class="auth-shell">
+    <header class="auth-topbar">
+      <a class="auth-back" href="index.html" aria-label="Quay lại trang chủ">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="title-wrap" aria-hidden="true">
+        <span class="title-main">Sweet</span>
+        <span class="title-accent">Bakery</span>
+      </div>
+      <a class="auth-help" href="index.html#contact" aria-label="Liên hệ">
+        <i class="fa-regular fa-circle-question"></i>
+      </a>
+    </header>
+
+    <main class="auth-stage">
+      <section class="auth-card">
+        <div class="auth-brand">
+          <i class="fa-solid fa-cake-candles"></i>
+          <span>GIFTER BAKERY</span>
+        </div>
+        <h1 class="auth-title">Chào mừng trở lại</h1>
+        <p class="auth-subtitle">Đăng nhập hoặc tạo tài khoản để dùng giỏ hàng, đặt bánh và theo dõi đơn hàng dễ dàng hơn.</p>
+
+        <div class="auth-tabs">
+          <button type="button" class="auth-tab active" id="login-tab">Đăng nhập</button>
+          <button type="button" class="auth-tab" id="register-tab">Đăng ký</button>
+        </div>
+
+        <p id="auth-message" class="auth-message"></p>
+        <p id="auth-admin-hint" class="auth-inline-note"></p>
+
+        <div id="login-panel" class="auth-panel">
+          <form id="login-form" class="auth-form">
+            <div>
+              <label class="field-label" for="login-email">Email</label>
+              <div class="input-shell">
+                <i class="fa-regular fa-envelope"></i>
+                <input id="login-email" type="email" placeholder="hello@delight.com" autocomplete="email" />
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="login-password">Mật khẩu</label>
+              <div class="input-shell auth-password">
+                <i class="fa-solid fa-lock"></i>
+                <input id="login-password" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password" />
+                <button type="button" class="password-toggle" data-target="login-password" aria-label="Hiện mật khẩu">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <a class="auth-forgot" href="auth.html?mode=register">Người dùng mới? Tạo tài khoản</a>
+            </div>
+
+            <button class="auth-submit" type="submit">Đăng nhập</button>
+
+            <div class="auth-divider">
+              <span>hoặc tiếp tục với</span>
+            </div>
+
+            <div id="google-signin-button-login" class="google-signin-button"></div>
+            <p id="google-signin-note-login" class="auth-inline-note"></p>
+          </form>
+        </div>
+
+        <div id="register-panel" class="auth-panel" hidden>
+          <form id="register-form" class="auth-form">
+            <div>
+              <label class="field-label" for="register-name">Họ và tên</label>
+              <div class="input-shell">
+                <i class="fa-regular fa-user"></i>
+                <input id="register-name" type="text" placeholder="Bake Master" autocomplete="name" />
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="register-email">Email</label>
+              <div class="input-shell">
+                <i class="fa-regular fa-envelope"></i>
+                <input id="register-email" type="email" placeholder="hello@sweet.com" autocomplete="email" />
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="register-birthday">Ngày sinh</label>
+              <div class="input-shell">
+                <i class="fa-regular fa-calendar"></i>
+                <input id="register-birthday" type="date" autocomplete="bday" />
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="register-password">Mật khẩu</label>
+              <div class="input-shell auth-password">
+                <i class="fa-solid fa-lock"></i>
+                <input id="register-password" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password" />
+                <button type="button" class="password-toggle" data-target="register-password" aria-label="Hiện mật khẩu">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="register-confirm">Xác nhận mật khẩu</label>
+              <div class="input-shell auth-password">
+                <i class="fa-solid fa-lock"></i>
+                <input id="register-confirm" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />
+                <button type="button" class="password-toggle" data-target="register-confirm" aria-label="Hiện mật khẩu">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <button class="auth-submit" type="submit">Tạo tài khoản</button>
+
+            <div class="auth-divider">
+              <span>hoặc tiếp tục với</span>
+            </div>
+
+            <div id="google-signin-button-register" class="google-signin-button"></div>
+            <p id="google-signin-note-register" class="auth-inline-note"></p>
+          </form>
+          <div class="auth-inline-note">Đã có tài khoản? <strong>Đăng nhập</strong> ở tab bên trái.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="auth-footer">
+      <a href="#">Chính sách</a>
+      <a href="#">Điều khoản</a>
+      <a href="index.html#contact">Liên hệ</a>
+    </footer>
+  </div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.querySelectorAll('.password-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        const icon = button.querySelector('i');
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        icon.className = isHidden ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+      });
+    });
+  </script>
+</body>
+</html>
