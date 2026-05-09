@@ -1,41 +1,52 @@
-# GIFTER BAKERY
+# Gifter Bakery
 
-Website bánh ngọt gồm frontend tĩnh, backend Express/SQLite, đăng nhập Google, giỏ hàng, đặt đơn và khu admin.
+Gifter Bakery là một website bán bánh ngọt gồm frontend HTML/CSS/JavaScript thuần và backend Node.js/Express dùng SQLite để lưu dữ liệu. Dự án có đăng nhập local, đăng nhập Google, giỏ hàng, đặt đơn, trang quản trị và tích hợp thông báo qua n8n/Socket.IO.
 
-## Tính năng hiện có
+## Tính Năng
 
-- Trang chủ, danh sách sản phẩm, chi tiết sản phẩm và giỏ hàng.
+- Trang chủ, danh sách sản phẩm, chi tiết sản phẩm, giỏ hàng.
 - Đăng ký, đăng nhập, đăng xuất bằng session cookie.
-- Đăng nhập Google qua Google Identity Services.
-- Tạo đơn hàng lưu vào SQLite.
-- Trang quản trị đơn hàng, khách hàng, thống kê và cài đặt.
-- Đồng bộ thông báo admin qua Socket.IO và n8n webhook.
+- Đăng nhập Google bằng Google Identity Services.
+- Tạo và quản lý đơn hàng.
+- Khu admin cho sản phẩm, đơn hàng, khách hàng, thống kê và cài đặt.
+- Đồng bộ thông báo đơn hàng qua Socket.IO và webhook n8n.
+- Tự seed dữ liệu sản phẩm ban đầu từ `frontend/js/product-data.js` nếu database còn trống.
 
-## Công nghệ
+## Công Nghệ
 
-- HTML5, CSS3, JavaScript vanilla.
-- Node.js, Express, `better-sqlite3`.
-- `google-auth-library`, `cookie-parser`, `socket.io`.
-- SQLite lưu người dùng, session và đơn hàng.
+- Frontend: HTML5, CSS3, JavaScript vanilla.
+- Backend: Node.js, Express.
+- Database: SQLite với `better-sqlite3`.
+- Xác thực: cookie-parser, session trong SQLite, Google OAuth ID token.
+- Thông báo realtime: Socket.IO.
 
-## Cấu trúc thư mục
+## Cấu Trúc Thư Mục
 
 ```text
 congnghewed/
 ├── backend/
-│   ├── server.js
 │   ├── db.js
+│   ├── server.js
 │   ├── schema.sql
 │   ├── .env.example
-│   └── n8n-*.workflow.json
+│   ├── lib/
+│   ├── routes/
+│   └── test/
 └── frontend/
-    ├── *.html
+    ├── index.html
+    ├── about.html
+    ├── products.html
+    ├── product-detail.html
+    ├── cart.html
+    ├── orders.html
+    ├── auth.html
+    ├── admin*.html
     ├── css/
     ├── js/
     └── img/
 ```
 
-## Chạy dự án
+## Chạy Dự Án
 
 1. Vào thư mục backend:
 
@@ -49,43 +60,89 @@ cd backend
 npm install
 ```
 
-3. Tạo file `.env` từ `.env.example` và chỉnh các biến cần thiết.
+3. Tạo file `.env` từ `.env.example` và chỉnh các giá trị cần thiết.
 
-4. Chạy server:
+4. Khởi động server:
 
 ```bash
 npm start
 ```
 
-5. Mở `http://localhost:3000`.
+5. Mở trình duyệt tại:
 
-## Biến môi trường chính
+```text
+http://localhost:3000
+```
 
-- `PORT`: cổng chạy server.
+Frontend được phục vụ trực tiếp từ backend, nên không cần mở file HTML bằng `file://`.
+
+## Script
+
+- `npm start`: chạy server Express.
+- `npm test`: chạy bộ test cơ bản trong `test/basic.test.js`.
+
+## API Chính
+
+- `GET /api/health`: kiểm tra trạng thái server.
+- `GET /api/public-config`: trả cấu hình công khai cho frontend.
+- `GET /api/me`: lấy user hiện tại từ session.
+- `POST /api/auth/register`: đăng ký tài khoản local.
+- `POST /api/auth/login`: đăng nhập local.
+- `POST /api/auth/google`: đăng nhập bằng Google.
+- `POST /api/auth/logout`: đăng xuất.
+- `GET /api/products`: lấy danh sách sản phẩm.
+- `GET /api/products/:slug`: lấy chi tiết sản phẩm.
+- `POST /api/products`: tạo sản phẩm, chỉ admin.
+- `PATCH /api/products/:slug`: cập nhật sản phẩm, chỉ admin.
+- `DELETE /api/products/:slug`: xóa sản phẩm, chỉ admin.
+- `GET /api/orders`: lấy danh sách đơn hàng của user hoặc admin.
+- `GET /api/orders/:id`: lấy chi tiết đơn hàng.
+- `POST /api/orders`: tạo đơn hàng mới.
+- `PATCH /api/orders/:id/status`: cập nhật trạng thái đơn, chỉ admin.
+- `PATCH /api/orders/:id/cancel`: hủy đơn đang xử lý.
+- `DELETE /api/orders/:id`: xóa đơn, chỉ admin.
+
+## Biến Môi Trường
+
+File mẫu: [`backend/.env.example`](backend/.env.example)
+
+- `PORT`: cổng chạy server, mặc định `3000`.
 - `NODE_ENV`: `development` hoặc `production`.
-- `TRUST_PROXY`: bật khi chạy sau reverse proxy / load balancer.
-- `COOKIE_SAMESITE`, `COOKIE_SECURE`: cấu hình cookie session.
-- `GOOGLE_CLIENT_ID`: bật Google Sign-In.
-- `N8N_NOTIFICATION_WEBHOOK_URL`: webhook n8n nhận thông báo đơn hàng.
+- `TRUST_PROXY`: đặt `1` nếu chạy sau reverse proxy.
+- `COOKIE_SAMESITE`: cấu hình SameSite cho session cookie.
+- `COOKIE_SECURE`: bật `true` khi dùng HTTPS.
+- `GOOGLE_CLIENT_ID`: OAuth Client ID cho đăng nhập Google.
+- `FRONTEND_ORIGIN`: origin frontend được phép gọi API.
+- `FRONTEND_ORIGINS`: danh sách origin, ngăn cách bằng dấu phẩy.
+- `N8N_NOTIFICATION_WEBHOOK_URL`: webhook nhận thông báo đơn hàng.
 - `N8N_NOTIFICATION_WEBHOOK_SECRET`: secret tùy chọn cho webhook.
-- `SESSION_DAYS`: số ngày sống của session cookie.
-- `ADMIN_EMAIL`, `ADMIN_PASSWORD`: tài khoản admin bootstrap. Khi deploy thật, `ADMIN_PASSWORD` là bắt buộc.
-- `FRONTEND_ORIGIN`, `FRONTEND_ORIGINS`: danh sách origin được phép gọi API thay đổi dữ liệu.
+- `SESSION_DAYS`: số ngày sống của session.
+- `ADMIN_EMAIL`: email tài khoản admin bootstrap.
+- `ADMIN_PASSWORD`: mật khẩu admin bootstrap.
 
-## Bảo mật và deploy
+## Database
 
-- Đặt `NODE_ENV=production` khi deploy.
+- File SQLite runtime được tạo tại `backend/data/bakery.sqlite`.
+- Schema nằm ở [`backend/schema.sql`](backend/schema.sql).
+- Khi database còn trống, backend sẽ tự seed sản phẩm từ `frontend/js/product-data.js`.
+
+## Lưu Ý Khi Deploy
+
+- Đặt `NODE_ENV=production`.
 - Đặt `ADMIN_PASSWORD` mạnh và riêng cho môi trường production.
-- Chỉ thêm các origin thực sự cần thiết vào `FRONTEND_ORIGINS`.
+- Chỉ thêm những origin thật sự cần thiết vào `FRONTEND_ORIGINS`.
 - Bật `COOKIE_SECURE=true` khi chạy qua HTTPS.
-- Kiểm tra `GET /api/health` sau khi deploy.
+- Kiểm tra `GET /api/health` sau khi deploy xong.
 
-## Ghi chú
+## Kiểm Tra
 
-- Không nên mở file HTML trực tiếp bằng `file://`; hãy chạy qua backend để API hoạt động.
-- Dữ liệu sản phẩm hiện đang nằm ở client, chưa chuyển sang API riêng hoàn toàn.
-- `data/bakery.sqlite` là file runtime, không cần commit nếu dùng repo cho phát triển.
+Chạy test:
 
-## Healthcheck
+```bash
+npm test
+```
 
-- `GET /api/health` trả về trạng thái deploy cơ bản.
+## Ghi Chú
+
+- Đây là dự án frontend tĩnh + backend Express, nên server vừa phục vụ HTML vừa cung cấp API.
+- Một số dữ liệu sản phẩm ban đầu nằm trong frontend và được backend đọc để seed database.
