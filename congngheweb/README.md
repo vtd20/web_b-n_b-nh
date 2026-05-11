@@ -75,7 +75,7 @@ cd backend
 2. Cài dependency:
 
 ```bash
-npm install
+pnpm install
 ```
 
 3. Tạo file `.env` từ `.env.example` và chỉnh các giá trị cần thiết.
@@ -83,7 +83,7 @@ npm install
 4. Khởi động server:
 
 ```bash
-npm start
+pnpm start
 ```
 
 5. Mở trình duyệt tại:
