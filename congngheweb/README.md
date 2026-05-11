@@ -157,7 +157,7 @@ File mẫu: [`backend/.env.example`](backend/.env.example)
 Chạy test:
 
 ```bash
-npm test
+pnpm test
 ```
 
 
