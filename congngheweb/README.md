@@ -96,8 +96,8 @@ Frontend được phục vụ trực tiếp từ backend, nên không cần mở
 
 ## Script
 
-- `npm start`: chạy server Express.
-- `npm test`: chạy bộ test cơ bản trong `test/basic.test.js`.
+- `pnpm start`: chạy server Express.
+- `pnpm test`: chạy bộ test cơ bản trong `test/basic.test.js`.
 
 ## API Chính
 
